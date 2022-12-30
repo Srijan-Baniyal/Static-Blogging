@@ -1,10 +1,22 @@
-import { FC } from "react";
+import { NextPage } from "next";
+import BlogCard from "../components/BlogCard";
 
 interface Props {}
 
-const blogs: FC<Props> = (props): JSX.Element => {
-  return <div>
-    blogs
-  </div>;
+const blogs: NextPage<Props> = (): JSX.Element => {
+  return (
+    <>
+      <div className="max-w-3xl mx-auto p-5s space-y-8">
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+        <BlogCard title="Dummy" description="dumy dumy dumy dumy dumy dumy "/>
+      </div>
+    </>
+  );
 };
 export default blogs;
