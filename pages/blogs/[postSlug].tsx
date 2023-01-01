@@ -10,10 +10,16 @@ import matter from "gray-matter";
 import { ParsedUrlQuery } from "querystring";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
+import { useRouter } from "next/router";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const SinglePage: NextPage<Props> = ({ post }) => {
+     const router = useRouter();
+     if (router.isFallback) {
+       return <p>Loading...</p>;
+     }
+
   const { content, title } = post;
   return (
     <div className="max-w-3xl mx-auto">
@@ -29,14 +35,14 @@ export const getStaticPaths: GetStaticPaths = () => {
   const dirPathToRead = path.join(process.cwd(), "posts");
   const dirs = fs.readdirSync(dirPathToRead);
   const paths = dirs.map((filename) => {
-    const filePathToRead = path.join(process.cwd(), "posts/" + filename);
+    const filePathToRead = path.join(process.cwd(), `posts/${filename}`)
     const fileContent = fs.readFileSync(filePathToRead, { encoding: "utf-8" });
     return { params: { postSlug: matter(fileContent).data.slug } };
   });
 
   return {
     paths,
-    fallback: "blocking", 
+    fallback: "blocking"
   };
 };
 
@@ -57,7 +63,7 @@ export const getStaticProps: GetStaticProps<Post> = async (context) => {
     const { postSlug } = params as IStaticProps;
     const filePathToRead = path.join(
       process.cwd(),
-     `posts/${postSlug}.md`
+       `posts/${postSlug}.md`
     );
     const fileContent = fs.readFileSync(filePathToRead, { encoding: "utf-8" });
     const source: any = await serialize(fileContent, {

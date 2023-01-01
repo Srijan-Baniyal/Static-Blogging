@@ -1,7 +1,7 @@
 ---
-title:Moi Title
-slug:Gregor Samsa
-meta:One morning, when Gregor Samsa woke from troubled dreams, he found himself _transformed_ in his bed into a horrible.
+title: Gregor samsa
+meta: One morning, when Gregor Samsa woke from troubled dreams.
+slug: Gregor-samsa-story
 ---
 
 #One morning, when Gregor Samsa woke from troubled dreams.
