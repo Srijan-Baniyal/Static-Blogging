@@ -63,12 +63,13 @@ export const getStaticProps: GetStaticProps<Post> = async (context) => {
     const { postSlug } = params as IStaticProps;
     const filePathToRead = path.join(
       process.cwd(),
-       `posts/${postSlug}.md`
-    );
-    const fileContent = fs.readFileSync(filePathToRead, { encoding: "utf-8" });
-    const source: any = await serialize(fileContent, {
-      parseFrontmatter: true,
-    });
+      `posts/${postSlug}.md`
+      );
+      const fileContent = fs.readFileSync(filePathToRead, { encoding: "utf-8" });
+      const source: any = await serialize(fileContent, {
+        parseFrontmatter: true,
+        mdxOptions: { development: false },
+      });
 
     return {
       props: {
